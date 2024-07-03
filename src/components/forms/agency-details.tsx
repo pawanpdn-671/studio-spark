@@ -24,8 +24,9 @@ import { Input } from "../ui/input";
 import { Switch } from "../ui/switch";
 import { Button } from "../ui/button";
 import { NumberInput } from "@tremor/react";
-import { deleteAgency, saveActivityLogsNotification, updateAgencyDetails } from "@/lib/queries";
+import { deleteAgency, initUser, saveActivityLogsNotification, updateAgencyDetails, upsertAgency } from "@/lib/queries";
 import Loading from "../global/loading";
+import { v4 } from "uuid";
 
 type Props = {
 	data?: Partial<Agency>;
@@ -103,7 +104,40 @@ const AgencyDetails = ({ data }: Props) => {
 			}
 
 			newUserData = await initUser({ role: "AGENCY_OWNER" });
-		} catch (error) {}
+
+			if (!data?.id) {
+				await upsertAgency({
+					id: data?.id ? data.id : v4(),
+					// customerId: data?.customerId || custId || '',
+					address: values.address,
+					agencyLogo: values.agencyLogo,
+					city: values.city,
+					companyPhone: values.companyPhone,
+					country: values.country,
+					name: values.name,
+					state: values.state,
+					whiteLabel: values.whiteLabel,
+					zipCode: values.zipCode,
+					createdAt: new Date(),
+					updatedAt: new Date(),
+					companyEmail: values.companyEmail,
+					connectAccountId: "",
+					goal: 5,
+				});
+
+				toast({
+					title: "Created Agency",
+				});
+
+				return router.refresh();
+			}
+		} catch (error) {
+			toast({
+				title: "Oops!",
+				variant: "destructive",
+				description: "Could not create your agency",
+			});
+		}
 	};
 
 	const handleDeleteAgency = async () => {
