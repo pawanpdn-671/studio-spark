@@ -1,5 +1,6 @@
 import { ModeToggle } from "@/components/global/mode-toggle";
 import { UserButton } from "@clerk/nextjs";
+import { User } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
