@@ -27,6 +27,7 @@ import Tune from "@/components/icons/tune";
 import Video from "@/components/icons/video_recorder";
 import Wallet from "@/components/icons/wallet";
 import Warning from "@/components/icons/warning";
+import React from "react";
 
 export const pricingCards = [
 	{
@@ -39,7 +40,7 @@ export const pricingCards = [
 		priceId: "",
 	},
 	{
-		title: "Unlimited Saas",
+		title: "Unlimited SaaS",
 		description: "The ultimate agency kit",
 		price: "$199",
 		duration: "month",
@@ -221,3 +222,11 @@ export type EditorBtns =
 	| "image"
 	| null
 	| "3Col";
+
+export const defaultStyles: React.CSSProperties = {
+	backgroundPosition: "center",
+	objectFit: "cover",
+	backgroundRepeat: "no-repeat",
+	textAlign: "left",
+	opacity: "100%",
+};

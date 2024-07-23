@@ -4,17 +4,17 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
 	const {
-		subAccountConnectAccId,
+		subAccountConnectedAccId,
 		prices,
 		subaccountId,
 	}: {
-		subAccountConnectAccId: string;
+		subAccountConnectedAccId: string;
 		prices: { recurring: boolean; productId: string }[];
 		subaccountId: string;
 	} = await req.json();
 
 	const origin = req.headers.get("origin");
-	if (!subAccountConnectAccId || !prices.length)
+	if (!subAccountConnectedAccId || !prices.length)
 		return new NextResponse("Stripe Account Id or price id is missing", {
 			status: 400,
 		});
@@ -66,7 +66,7 @@ export async function POST(req: Request) {
 				ui_mode: "embedded",
 				redirect_on_completion: "never",
 			},
-			{ stripeAccount: subAccountConnectAccId },
+			{ stripeAccount: subAccountConnectedAccId },
 		);
 
 		return NextResponse.json(

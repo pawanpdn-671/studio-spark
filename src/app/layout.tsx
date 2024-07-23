@@ -4,6 +4,7 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import ModalProvider from "@/providers/modal-provider";
 import { Toaster } from "@/components/ui/toaster";
+import { Toaster as SonnarToaster } from "@/components/ui/sonner";
 
 const inter = DM_Sans({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<ModalProvider>
 						{children}
 						<Toaster />
+						<SonnarToaster position="bottom-left" />
 					</ModalProvider>
 				</ThemeProvider>
 			</body>
