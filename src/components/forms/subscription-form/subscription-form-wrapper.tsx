@@ -57,8 +57,8 @@ const SubscriptionFormWrapper = ({ customerId, planExists }: Props) => {
 
 			const subscriptionResponseData = await subscriptionResponse.json();
 			setSubscription({
-				clientSecret: subscriptionResponseData?.clientSecret,
-				subscriptionId: subscriptionResponseData?.subscriptionId,
+				clientSecret: subscriptionResponseData.clientSecret,
+				subscriptionId: subscriptionResponseData.subscriptionId,
 			});
 
 			if (planExists) {

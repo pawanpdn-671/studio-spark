@@ -54,6 +54,8 @@ const Billing = async ({ params }: Props) => {
 		})),
 	];
 
+	console.log(agencySubscription, currentPlanDetails);
+
 	return (
 		<>
 			<SubscriptionHelper

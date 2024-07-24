@@ -874,6 +874,15 @@ export const getFunnel = async (funnelId: string) => {
 
 	return funnel;
 };
+export const deleteFunnel = async (funnelId: string) => {
+	const funnel = await db.funnel.delete({
+		where: {
+			id: funnelId,
+		},
+	});
+
+	return funnel;
+};
 
 export const updateFunnelProducts = async (products: string, funnelId: string) => {
 	const data = await db.funnel.update({

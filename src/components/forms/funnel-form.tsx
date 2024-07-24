@@ -11,13 +11,14 @@ import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import Loading from "../global/loading";
 import { CreateFunnelFormSchema } from "@/lib/types";
-import { saveActivityLogsNotification, upsertFunnel } from "@/lib/queries";
+import { deleteFunnel, saveActivityLogsNotification, upsertFunnel } from "@/lib/queries";
 import { v4 } from "uuid";
 import { toast } from "../ui/use-toast";
 import { useModal } from "@/providers/modal-provider";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import FileUpload from "../global/file-upload";
+import { Trash } from "lucide-react";
 
 interface CreateFunnelProps {
 	defaultData?: Funnel;
@@ -140,9 +141,29 @@ const FunnelForm: React.FC<CreateFunnelProps> = ({ defaultData, subAccountId }) 
 								</FormItem>
 							)}
 						/>
-						<Button className="w-20 mt-4" disabled={isLoading} type="submit">
-							{form.formState.isSubmitting ? <Loading /> : "Save"}
-						</Button>
+						<div className="flex gap-2 items-center">
+							<Button className="w-20 mt-4" disabled={isLoading} type="submit">
+								{form.formState.isSubmitting ? <Loading /> : "Save"}
+							</Button>
+							{defaultData?.id && (
+								<Button
+									variant={"outline"}
+									className="w-22 self-end border-destructive text-destructive hover:bg-destructive"
+									disabled={form.formState.isSubmitting}
+									type="button"
+									onClick={async () => {
+										const response = await deleteFunnel(defaultData.id);
+										await saveActivityLogsNotification({
+											agencyId: undefined,
+											description: `Deleted a funnel | ${response?.name}`,
+											subaccountId: subAccountId,
+										});
+										router.refresh();
+									}}>
+									{form.formState.isSubmitting ? <Loading /> : <Trash />}
+								</Button>
+							)}
+						</div>
 					</form>
 				</Form>
 			</CardContent>
