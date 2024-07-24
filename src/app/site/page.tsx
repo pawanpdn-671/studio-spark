@@ -17,9 +17,11 @@ export default async function Home() {
 				<div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#161616_1px,transparent_1px),linear-gradient(to_bottom,#161616_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
 				<p className="text-center">Run your agency, in one place</p>
 				<div className="bg-gradient-to-r from-primary to-secondary-foreground text-transparent bg-clip-text relative">
-					<h1 className="text-9xl font-bold text-center md:text-[250px]">StudioSpark</h1>
+					<h1 className="font-bold text-center text-6xl sm:text-[100px] lg:text-[150px] xl:text-[200px] 2xl:text-[250px]">
+						StudioSpark
+					</h1>
 				</div>
-				<div className="flex justify-center items-center relative md:mt-[-70px]">
+				<div className="flex justify-center items-center relative md:mt-[-40px] lg:mt-[-60px] xl:mt-[-80px] 2xl:mt-[-100px]">
 					<Image
 						src={"/assets/preview.png"}
 						alt="banner image"
@@ -31,7 +33,7 @@ export default async function Home() {
 				</div>
 			</section>
 
-			<section className="flex justify-center flex-col gap-4 mt-[-60px] md:!mt-20">
+			<section className="flex justify-center flex-col gap-4 mt-[-60px] md:!mt-20 pb-20">
 				<h2 className="text-4xl text-center">Choose what fits you right</h2>
 				<p className="text-muted-foreground text-center">
 					Our straightforward pricing model is designed to fit your needs. If {" you're "} not <br /> ready to
@@ -54,7 +56,7 @@ export default async function Home() {
 								</CardDescription>
 							</CardHeader>
 							<CardContent>
-								<span className="text-4xl font-bold">{card.unit_amount && card.unit_amount / 100}</span>
+								<span className="text-4xl font-bold">${card.unit_amount && card.unit_amount / 100}</span>
 								<span className="text-muted-foreground">/ {card.recurring?.interval}</span>
 							</CardContent>
 							<CardFooter className="flex flex-col items-start gap-4">
@@ -70,7 +72,7 @@ export default async function Home() {
 								</div>
 								<Link
 									href={`/agency?plan=${card.id}`}
-									className={clsx("w-full text-center bg-primary p-2 rounded-md", {
+									className={clsx("w-full text-white text-center bg-primary p-2 rounded-md", {
 										"!bg-muted-foreground": card.nickname !== "Unlimited SaaS",
 									})}>
 									Get Started
@@ -104,7 +106,7 @@ export default async function Home() {
 							</div>
 							<Link
 								href={`/agency`}
-								className={clsx("w-full text-center bg-primary p-2 rounded-md", {
+								className={clsx("w-full text-center text-white bg-primary p-2 rounded-md", {
 									"!bg-muted-foreground": pricingCards[0].title !== "Unlimited SaaS",
 								})}>
 								Get Started
