@@ -85,7 +85,7 @@ const SettingsTab = (props: Props) => {
 			defaultValue={["Typography", "Dimensions", "Decorations", "Flexbox"]}>
 			<AccordionItem value="Custom" className="px-6 py-0">
 				<AccordionTrigger className="!no-underline">Custom</AccordionTrigger>
-				<AccordionContent>
+				<AccordionContent className="px-1">
 					{state.editor.selectedElement.type === "link" &&
 						!Array.isArray(state.editor.selectedElement.content) && (
 							<div className="flex flex-col gap-2">
@@ -98,11 +98,23 @@ const SettingsTab = (props: Props) => {
 								/>
 							</div>
 						)}
+					{state.editor.selectedElement.type === "video" &&
+						!Array.isArray(state.editor.selectedElement.content) && (
+							<div className="flex flex-col gap-2">
+								<p className="text-muted-foreground">Video Source</p>
+								<Input
+									id="src"
+									placeholder="https://www.youtube.com/embed/UFnXm6cjGwU?si=pJvfT1Xok8pP8IMO"
+									onChange={handleChangeCustomValues}
+									value={state.editor.selectedElement.content.src}
+								/>
+							</div>
+						)}
 				</AccordionContent>
 			</AccordionItem>
-			<AccordionItem value="Typography" className="px-6 py-0  border-y-[1px]">
+			<AccordionItem value="Typography" className="px-6 py-0 overflow-visible border-y-[1px]">
 				<AccordionTrigger className="!no-underline">Typography</AccordionTrigger>
-				<AccordionContent className="flex flex-col gap-2 ">
+				<AccordionContent className="flex flex-col gap-2 px-1">
 					<div className="flex flex-col gap-2 ">
 						<p className="text-muted-foreground">Text Align</p>
 						<Tabs
@@ -182,7 +194,7 @@ const SettingsTab = (props: Props) => {
 			</AccordionItem>
 			<AccordionItem value="Dimensions" className=" px-6 py-0 ">
 				<AccordionTrigger className="!no-underline">Dimensions</AccordionTrigger>
-				<AccordionContent>
+				<AccordionContent className="px-1">
 					<div className="flex flex-col gap-4">
 						<div className="flex flex-col gap-2">
 							<div className="flex gap-4 flex-col">
@@ -301,7 +313,7 @@ const SettingsTab = (props: Props) => {
 			</AccordionItem>
 			<AccordionItem value="Decorations" className="px-6 py-0 ">
 				<AccordionTrigger className="!no-underline">Decorations</AccordionTrigger>
-				<AccordionContent className="flex flex-col gap-4">
+				<AccordionContent className="flex flex-col gap-4 px-1">
 					<div>
 						<Label className="text-muted-foreground">Opacity</Label>
 						<div className="flex items-center justify-end">
@@ -425,7 +437,7 @@ const SettingsTab = (props: Props) => {
 			</AccordionItem>
 			<AccordionItem value="Flexbox" className="px-6 py-0  ">
 				<AccordionTrigger className="!no-underline">Flexbox</AccordionTrigger>
-				<AccordionContent>
+				<AccordionContent className="px-1">
 					<Label className="text-muted-foreground">Justify Content</Label>
 					<Tabs
 						onValueChange={(e) =>
@@ -437,7 +449,7 @@ const SettingsTab = (props: Props) => {
 							})
 						}
 						value={state.editor.selectedElement.styles.justifyContent}>
-						<TabsList className="flex items-center flex-row justify-between border-[1px] rounded-md bg-transparent h-fit gap-4">
+						<TabsList className="flex items-center flex-row justify-between border-[1px] rounded-md bg-transparent h-fit gap-2">
 							<TabsTrigger value="space-between" className="w-10 h-10 p-0 data-[state=active]:bg-muted">
 								<AlignHorizontalSpaceBetween size={18} />
 							</TabsTrigger>

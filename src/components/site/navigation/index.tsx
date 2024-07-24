@@ -27,13 +27,11 @@ const Navigation = ({ user }: Props) => {
 			</nav> */}
 
 			<aside className="flex gap-2 items-center">
-				{userId ? (
-					<UserButton />
-				) : (
-					<Link href="/agency" className="bg-primary text-white p-2 px-4 rounded-md hover:bg-primary/80">
-						Login
-					</Link>
-				)}
+				<Link
+					href="/agency"
+					className="bg-primary text-white p-1.5 px-3 lg:p-2 lg:px-4 text-sm rounded-md hover:bg-primary/80">
+					{userId ? "Dashboard" : "Login"}
+				</Link>
 
 				<ModeToggle />
 			</aside>
